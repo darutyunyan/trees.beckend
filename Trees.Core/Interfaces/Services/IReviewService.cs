@@ -1,9 +1,9 @@
 using Trees.Core.Entities;
 
-namespace RestApi.Models.Repository
+namespace Trees.Core.Interfaces
 {
-	public interface IReviewRepository
-    {
+    public interface IReviewService
+	{
         Task CreateAsync(Review review);
         Task<List<Review>> GetAllAsync();
         Task DeleteAsync(Guid id);

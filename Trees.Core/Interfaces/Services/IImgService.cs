@@ -1,0 +1,12 @@
+using Trees.Core.Entities;
+
+namespace Trees.Core.Interfaces
+{
+    public interface IImgService
+    {
+        Task CreateAsync(Img img);
+        Task<Img?> GetAsync(Guid id);
+        Task<List<Img>> GetAllAsync();
+        Task DeleteAsync(Guid id);
+    }
+}
