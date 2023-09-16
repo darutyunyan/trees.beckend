@@ -22,13 +22,13 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<LegModel>(leg);
 
-            await _context.Legs.AddAsync(result);
+            await _context.Leg.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Leg?> GetAsync(Guid id)
         {
-            LegModel? legModel = await _context.Legs.FirstOrDefaultAsync(l => l.Id == id);
+            LegModel? legModel = await _context.Leg.FirstOrDefaultAsync(l => l.Id == id);
 
             var result = legModel != null ? _mapper.Map<Leg>(legModel) : null;
 
@@ -37,7 +37,7 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<List<Leg>> GetAllAsync()
         {
-            List<LegModel> legModels = await _context.Legs.OrderBy(l => l.Name).ToListAsync();
+            List<LegModel> legModels = await _context.Leg.OrderBy(l => l.Name).ToListAsync();
 
             var result = _mapper.Map<List<Leg>>(legModels);
 
@@ -46,18 +46,18 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<bool> IsExistAsync(string name)
         {
-            LegModel? leg = await _context.Legs.FirstOrDefaultAsync(l => l.Name == name);
+            LegModel? leg = await _context.Leg.FirstOrDefaultAsync(l => l.Name == name);
 
             return leg != null;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            LegModel? leg = await _context.Legs.FirstOrDefaultAsync(l => l.Id == id);
+            LegModel? leg = await _context.Leg.FirstOrDefaultAsync(l => l.Id == id);
 
             if (leg != null)
             {
-                _context.Legs.Remove(leg);
+                _context.Leg.Remove(leg);
                 await _context.SaveChangesAsync();
             }
         }

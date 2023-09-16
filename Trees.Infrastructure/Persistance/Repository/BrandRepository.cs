@@ -22,13 +22,13 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<BrandModel>(brand);
 
-            await _context.Brands.AddAsync(result);
+            await _context.Brand.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Brand?> GetAsync(Guid id)
         {
-            BrandModel? brandModel = await _context.Brands.FirstOrDefaultAsync(i => i.Id == id);
+            BrandModel? brandModel = await _context.Brand.FirstOrDefaultAsync(i => i.Id == id);
 
             var result = brandModel != null ? _mapper.Map<Brand>(brandModel) : null;
 
@@ -37,7 +37,7 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<List<Brand>> GetAllAsync()
         {
-            List<BrandModel> brandModels = await _context.Brands.OrderBy(m => m.Name).ToListAsync();
+            List<BrandModel> brandModels = await _context.Brand.OrderBy(m => m.Name).ToListAsync();
 
             var result = _mapper.Map<List<Brand>>(brandModels);
 
@@ -46,18 +46,18 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<bool> IsExistAsync(string name)
         {
-            BrandModel? brand = await _context.Brands.FirstOrDefaultAsync(b => b.Name == name);
+            BrandModel? brand = await _context.Brand.FirstOrDefaultAsync(b => b.Name == name);
 
             return brand != null;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            BrandModel? brandModel = await _context.Brands.FirstOrDefaultAsync(b => b.Id == id);
+            BrandModel? brandModel = await _context.Brand.FirstOrDefaultAsync(b => b.Id == id);
 
             if (brandModel != null)
             {
-                _context.Brands.Remove(brandModel);
+                _context.Brand.Remove(brandModel);
                 await _context.SaveChangesAsync();
             }
         }

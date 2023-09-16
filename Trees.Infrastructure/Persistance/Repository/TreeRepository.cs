@@ -22,7 +22,7 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<TreeModel>(tree);
 
-            await _context.Trees.AddAsync(result);
+            await _context.Tree.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
@@ -30,13 +30,13 @@ namespace Trees.Infrastructure.Persistance.Repository
         {
             var result = _mapper.Map<TreeModel>(tree);
 
-            _context.Trees.Update(result);
+            _context.Tree.Update(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<Tree>> GetAllAsync()
         {
-            var resultModels = await _context.Trees
+            var resultModels = await _context.Tree
                 .Include(t => t.Img).Include(t => t.Leg).Include(t => t.Material)
                 .Include(t => t.Brand).Include(t => t.AssemblyMethod)
                 .OrderBy(n => n.Name)
@@ -47,18 +47,18 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task DeleteAsync(Guid id)
         {
-            TreeModel? treeModel = await _context.Trees.FirstOrDefaultAsync(b => b.Id == id);
+            TreeModel? treeModel = await _context.Tree.FirstOrDefaultAsync(b => b.Id == id);
 
             if (treeModel != null)
             {
-                _context.Trees.Remove(treeModel);
+                _context.Tree.Remove(treeModel);
                 await _context.SaveChangesAsync();
             }
         }
 
         public async Task<Tree?> GetByMaterialIdAsync(Guid id)
         {
-            TreeModel? result = await _context.Trees.FirstOrDefaultAsync(p => p.ImgId == id);
+            TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.ImgId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;
         }
@@ -66,28 +66,28 @@ namespace Trees.Infrastructure.Persistance.Repository
         public async Task<Tree?> GetByLegIdAsync(Guid id)
         {
 
-            TreeModel? result = await _context.Trees.FirstOrDefaultAsync(p => p.LegId == id);
+            TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.LegId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;
         }
 
         public async Task<Tree?> GetByBrandIdAsync(Guid id)
         {
-            TreeModel? result = await _context.Trees.FirstOrDefaultAsync(p => p.BrandId == id);
+            TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.BrandId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;
         }
 
         public async Task<Tree?> GetByAssemblyMethodIdAsync(Guid id)
         {
-            TreeModel? result = await _context.Trees.FirstOrDefaultAsync(p => p.AssemblyMethodId == id);
+            TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.AssemblyMethodId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;
         }
 
         public async Task<Tree?> GetByImgIdAsync(Guid id)
         {
-            TreeModel? result = await _context.Trees.FirstOrDefaultAsync(p => p.ImgId == id);
+            TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.ImgId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;
         }

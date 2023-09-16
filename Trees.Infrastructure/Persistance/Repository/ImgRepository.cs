@@ -22,13 +22,13 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<ImgModel>(img);
 
-            await _context.Imgs.AddAsync(result);
+            await _context.Img.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Img?> GetAsync(Guid id)
         {
-            ImgModel? imgModel = await _context.Imgs.FirstOrDefaultAsync(i => i.Id == id);
+            ImgModel? imgModel = await _context.Img.FirstOrDefaultAsync(i => i.Id == id);
 
             var result = imgModel != null ? _mapper.Map<Img>(imgModel) : null;
 
@@ -37,7 +37,7 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<List<Img>> GetAllAsync()
         {
-            List<ImgModel> imgModels = await _context.Imgs.OrderBy(m => m.Name).ToListAsync();
+            List<ImgModel> imgModels = await _context.Img.OrderBy(m => m.Name).ToListAsync();
 
             var result = _mapper.Map<List<Img>>(imgModels);
 
@@ -46,18 +46,18 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<bool> IsExistAsync(string name)
         {
-            ImgModel? img = await _context.Imgs.FirstOrDefaultAsync(i => i.Name == name);
+            ImgModel? img = await _context.Img.FirstOrDefaultAsync(i => i.Name == name);
 
             return img != null;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            ImgModel? img = await _context.Imgs.FirstOrDefaultAsync(i => i.Id == id);
+            ImgModel? img = await _context.Img.FirstOrDefaultAsync(i => i.Id == id);
 
             if (img != null)
             {
-                _context.Imgs.Remove(img);
+                _context.Img.Remove(img);
                 await _context.SaveChangesAsync();
             }
         }

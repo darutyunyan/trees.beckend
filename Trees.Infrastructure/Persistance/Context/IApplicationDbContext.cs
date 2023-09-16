@@ -5,15 +5,15 @@ namespace Trees.Infrastructure.Persistance.Context
 {
     public interface IApplicationDbContext
     {
-        DbSet<AccountModel> Accounts { get; set; }
-        DbSet<LocationModel> Locations { get; set; }
-        DbSet<TreeModel> Trees { get; set; }
-        DbSet<ImgModel> Imgs { get; set; }
-        DbSet<MaterialModel> Materials { get; set; }
-        DbSet<BrandModel> Brands { get; set; }
-        DbSet<LegModel> Legs { get; set; }
-        DbSet<AssemblyMethodModel> AssemblyMethods { get; set; }
-        DbSet<ReviewModel> Reviews { get; set; }
+        DbSet<AccountModel> Account { get; set; }
+        DbSet<LocationModel> Location { get; set; }
+        DbSet<TreeModel> Tree { get; set; }
+        DbSet<ImgModel> Img { get; set; }
+        DbSet<MaterialModel> Material { get; set; }
+        DbSet<BrandModel> Brand { get; set; }
+        DbSet<LegModel> Leg { get; set; }
+        DbSet<AssemblyMethodModel> AssemblyMethod { get; set; }
+        DbSet<ReviewModel> Review { get; set; }
 
         Task SaveChangesAsync();
     }

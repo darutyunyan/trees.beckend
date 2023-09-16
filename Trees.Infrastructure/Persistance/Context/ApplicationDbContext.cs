@@ -12,15 +12,15 @@ namespace Trees.Infrastructure.Persistance.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
-        public DbSet<AccountModel> Accounts { get; set; }
-        public DbSet<LocationModel> Locations { get; set; }
-        public DbSet<TreeModel> Trees { get; set; }
-        public DbSet<ImgModel> Imgs { get; set; }
-        public DbSet<MaterialModel> Materials { get; set; }
-        public DbSet<BrandModel> Brands { get; set; }
-        public DbSet<LegModel> Legs { get; set; }
-        public DbSet<AssemblyMethodModel> AssemblyMethods { get; set; }
-        public DbSet<ReviewModel> Reviews { get; set; }
+        public DbSet<AccountModel> Account { get; set; }
+        public DbSet<LocationModel> Location { get; set; }
+        public DbSet<TreeModel> Tree { get; set; }
+        public DbSet<ImgModel> Img { get; set; }
+        public DbSet<MaterialModel> Material { get; set; }
+        public DbSet<BrandModel> Brand { get; set; }
+        public DbSet<LegModel> Leg { get; set; }
+        public DbSet<AssemblyMethodModel> AssemblyMethod { get; set; }
+        public DbSet<ReviewModel> Review { get; set; }
 
         public async Task SaveChangesAsync() => await SaveChangesAsync();
     }

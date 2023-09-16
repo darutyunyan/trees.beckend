@@ -22,19 +22,19 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             Location? currentLocation = await GetAsync();
 
-            var result = _mapper.Map<LocationModel>(currentLocation);
+            var result = _mapper.Map<LocationModel>(location);
 
-            if (result == null)
-                await _context.Locations.AddAsync(result);
+            if (currentLocation == null)
+                await _context.Location.AddAsync(result);
             else
-                _context.Locations.Update(result);
+                _context.Location.Update(result);
 
             await _context.SaveChangesAsync();
         }
 
         public async Task<Location?> GetAsync()
         {
-            LocationModel? locationModel = await _context.Locations.FirstOrDefaultAsync();
+            LocationModel? locationModel = await _context.Location.FirstOrDefaultAsync();
 
             var result = locationModel != null ? _mapper.Map<Location>(locationModel) : null;
 

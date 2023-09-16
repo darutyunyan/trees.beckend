@@ -4,9 +4,9 @@ using Trees.Infrastructure.Persistance.Models;
 
 namespace Trees.Infrastructure.Persistance.Mapping
 {
-    public class AppMappingProfile : Profile
+    public class DbMappingProfile : Profile
     {
-        public AppMappingProfile()
+        public DbMappingProfile()
         {
             CreateMap<AssemblyMethodModel, AssemblyMethod>();
             CreateMap<ImgModel, Img>();

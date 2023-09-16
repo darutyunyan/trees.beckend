@@ -22,13 +22,13 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<ReviewModel>(review);
 
-            await _context.Reviews.AddAsync(result);
+            await _context.Review.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<Review>> GetAllAsync()
         {
-            List<ReviewModel> reviewModels = await _context.Reviews.OrderByDescending(r => r.Date).ToListAsync();
+            List<ReviewModel> reviewModels = await _context.Review.OrderByDescending(r => r.Date).ToListAsync();
 
             var result = _mapper.Map<List<Review>>(reviewModels);
 
@@ -37,11 +37,11 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task DeleteAsync(Guid id)
         {
-            ReviewModel? review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
+            ReviewModel? review = await _context.Review.FirstOrDefaultAsync(r => r.Id == id);
 
             if (review != null)
             {
-                _context.Reviews.Remove(review);
+                _context.Review.Remove(review);
                 await _context.SaveChangesAsync();
             }
         }

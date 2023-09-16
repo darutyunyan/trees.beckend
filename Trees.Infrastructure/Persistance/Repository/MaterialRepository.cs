@@ -22,13 +22,13 @@ namespace Trees.Infrastructure.Persistance.Repository
 
             var result = _mapper.Map<MaterialModel>(material);
 
-            await _context.Materials.AddAsync(result);
+            await _context.Material.AddAsync(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Material?> GetAsync(Guid id)
         {
-            MaterialModel? materialModel = await _context.Materials.FirstOrDefaultAsync(m => m.Id == id);
+            MaterialModel? materialModel = await _context.Material.FirstOrDefaultAsync(m => m.Id == id);
 
             var result = materialModel != null ? _mapper.Map<Material>(materialModel) : null;
 
@@ -37,7 +37,7 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<List<Material>> GetAllAsync()
         {
-            List<MaterialModel> materialModels = await _context.Materials.OrderBy(m => m.Name).ToListAsync();
+            List<MaterialModel> materialModels = await _context.Material.OrderBy(m => m.Name).ToListAsync();
 
             var result = _mapper.Map<List<Material>>(materialModels);
 
@@ -46,18 +46,18 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<bool> IsExistAsync(string name)
         {
-            MaterialModel? material = await _context.Materials.FirstOrDefaultAsync(m => m.Name == name);
+            MaterialModel? material = await _context.Material.FirstOrDefaultAsync(m => m.Name == name);
 
             return material != null;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            MaterialModel? material = await _context.Materials.FirstOrDefaultAsync(l => l.Id == id);
+            MaterialModel? material = await _context.Material.FirstOrDefaultAsync(l => l.Id == id);
 
             if (material != null)
             {
-                _context.Materials.Remove(material);
+                _context.Material.Remove(material);
                 await _context.SaveChangesAsync();
             }
         }
