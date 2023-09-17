@@ -74,40 +74,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Map("/", async (
-    IOptions<AppSettings> options,
-    IBrandService service,
-    ITreeService s,
-    ILocationService r,
-    IMaterialService m,
-    IReviewService we,
-    IAssemblyMethodService ase,
-    IImgService imgs,
-    ILegService legs) =>
-{
-    AppSettings person = options.Value;  // получаем переданные через Options объект Person
-
-    try
-    {
-        var res1 = await service.GetAllAsync();
-        var res2 = await s.GetAllAsync();
-        var res3 = await r.GetAsync();
-        var res4 = await m.GetAllAsync();
-     
-        var res6 = await ase.GetAllAsync();
-        var res7 = await imgs.GetAllAsync();
-        var res8 = await legs.GetAllAsync();
-        var res5 = await we.GetAllAsync();
-    }
-    catch (Exception ex)
-    {
-        var weew = ex;
-
-    }
-
-
-
-    return person;
-});
-
 app.Run();
