@@ -10,7 +10,6 @@ namespace Trees.Infrastructure.Persistance.Repository
         public LogRepository(ILogDbContext context)
         {
             _context = context;
-
         }
 
         public async Task AddAsync(Log log)
