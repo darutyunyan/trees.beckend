@@ -1,13 +1,13 @@
-using Microsoft.Extensions.Options;
 using Trees.Api;
 using Trees.Api.Mapping;
 using Trees.Api.Utils;
-using Trees.Core.Interfaces;
 using Trees.Infrastructure.Persistance.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuration.
+string settingsFilePath = string.Format(AppSettings.AppSettingsFileFormat, builder.Environment.EnvironmentName);
+builder.Configuration.AddJsonFile(settingsFilePath);
 builder.Services.Configure<AppSettings>(builder.Configuration);
 
 // Add services to the container.
@@ -27,7 +27,7 @@ builder.Services.ConfigureServices();
 builder.Services.ConfigureCors();
 
 // Mappers.
-builder.Services.AddAutoMapper(typeof(DbMappingProfile), typeof(ApiMappingProfile));
+builder.Services.AddAutoMapper(typeof(ApiMappingProfile), typeof(DbMappingProfile));
 
 builder.Services.AddControllers();
 
@@ -36,9 +36,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

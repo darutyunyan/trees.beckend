@@ -22,6 +22,6 @@ namespace Trees.Infrastructure.Persistance.Context
         public DbSet<AssemblyMethodModel> AssemblyMethod { get; set; }
         public DbSet<ReviewModel> Review { get; set; }
 
-        public async Task SaveChangesAsync() => await SaveChangesAsync();
+        public async Task SaveChangesAsync() => await base.SaveChangesAsync();
     }
 }

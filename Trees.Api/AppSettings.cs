@@ -5,7 +5,8 @@ namespace Trees.Api
 {
     public class AppSettings
     {
-        public static string DB_CONNECTION_FORMAT = "Data Source={0};Database={1};Integrated Security=False;User ID={2};Password={3};TrustServerCertificate=True";
+        public static string AppSettingsFileFormat = "appsettings.{0}.json";
+        public static string DbConnectionFormat = "Data Source={0};Database={1};Integrated Security=False;User ID={2};Password={3};TrustServerCertificate=True";
 
         [SetsRequiredMembers]
         public AppSettings()

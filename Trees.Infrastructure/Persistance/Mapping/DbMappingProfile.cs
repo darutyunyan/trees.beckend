@@ -8,14 +8,14 @@ namespace Trees.Infrastructure.Persistance.Mapping
     {
         public DbMappingProfile()
         {
-            CreateMap<AssemblyMethodModel, AssemblyMethod>();
-            CreateMap<ImgModel, Img>();
-            CreateMap<LegModel, Leg>();
-            CreateMap<LocationModel, Location>();
-            CreateMap<MaterialModel, Material>();
-            CreateMap<ReviewModel, Review>();
-            CreateMap<BrandModel, Brand>();
-            CreateMap<TreeModel, TreeModel>();
+            CreateMap<AssemblyMethodModel, AssemblyMethod>().ReverseMap();
+            CreateMap<ImgModel, Img>().ReverseMap();
+            CreateMap<LegModel, Leg>().ReverseMap();
+            CreateMap<LocationModel, Location>().ReverseMap();
+            CreateMap<MaterialModel, Material>().ReverseMap();
+            CreateMap<ReviewModel, Review>().ReverseMap();
+            CreateMap<BrandModel, Brand>().ReverseMap();
+            CreateMap<TreeModel, TreeModel>().ReverseMap();
         }
     }
 }

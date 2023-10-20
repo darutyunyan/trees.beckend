@@ -27,12 +27,12 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = _treeRepository.GetByBrandIdAsync(id) != null;
+            bool isUsed = await _treeRepository.GetByBrandIdAsync(id) != null;
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
 
-            await _brandRepository.GetAsync(id);
+            await _brandRepository.DeleteAsync(id);
         }
 
         private readonly IBrandRepository _brandRepository;

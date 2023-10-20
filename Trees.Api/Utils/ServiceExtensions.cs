@@ -27,7 +27,7 @@ namespace Trees.Api.Utils
 
             services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
                 options.UseSqlServer(string.Format(
-                    AppSettings.DB_CONNECTION_FORMAT,
+                    AppSettings.DbConnectionFormat,
                     settings.DBAppSettings.DataSource,
                     settings.DBAppSettings.DataBase,
                     settings.DBAppSettings.UserID,
@@ -42,7 +42,7 @@ namespace Trees.Api.Utils
             services.AddDbContext<ILogDbContext, LogDbContext>(options =>
                 options.UseSqlServer(
                     string.Format(
-                        AppSettings.DB_CONNECTION_FORMAT,
+                        AppSettings.DbConnectionFormat,
                         settings.DBLogSettings.DataSource,
                         settings.DBLogSettings.DataBase,
                         settings.DBLogSettings.UserID,

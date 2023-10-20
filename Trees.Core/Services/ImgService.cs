@@ -27,7 +27,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = _treeRepository.GetByImgIdAsync(id) != null;
+            bool isUsed = await _treeRepository.GetByImgIdAsync(id) != null;
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
