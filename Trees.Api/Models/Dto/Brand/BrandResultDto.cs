@@ -1,6 +1,6 @@
-namespace Trees.Api.Models.Dto
+namespace Trees.Api.Models.Dto.Brand
 {
-    public class SimpleItem
+    public class BrandResultDto
     {
         public required string Id { get; set; }
         public required string Name { get; set; }

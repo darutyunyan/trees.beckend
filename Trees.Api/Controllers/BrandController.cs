@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Trees.Api.Models.Dto;
+using Trees.Api.Models.Dto.Brand;
 using Trees.Core.Entities;
 using Trees.Core.Interfaces;
 
@@ -15,7 +15,7 @@ namespace Trees.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(AddSimpleDto dto)
+        public async Task<ActionResult> Create(BrandDto dto)
         {
             var result = _mapper.Map<Brand>(dto);
 
@@ -29,7 +29,7 @@ namespace Trees.Api.Controllers
         {
             var brands = await _brandService.GetAllAsync();
 
-            var result = _mapper.Map<List<SimpleItem>>(brands);
+            var result = _mapper.Map<List<BrandResultDto>>(brands);
 
             return Ok(result.ToArray());
         }
@@ -37,7 +37,7 @@ namespace Trees.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
-            await _brandService.DeleteAsync(Guid.Parse(id)); // exception
+            await _brandService.DeleteAsync(Guid.Parse(id));
 
             return Ok();
         }
