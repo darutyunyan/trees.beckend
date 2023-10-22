@@ -27,7 +27,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = _treeRepository.GetByLegIdAsync(id) != null;
+            bool isUsed = await _treeRepository.GetByLegIdAsync(id) != null;
 
             if (isUsed)
                 throw new ArgumentException(); // TODO

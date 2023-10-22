@@ -65,7 +65,6 @@ namespace Trees.Infrastructure.Persistance.Repository
 
         public async Task<Tree?> GetByLegIdAsync(Guid id)
         {
-
             TreeModel? result = await _context.Tree.FirstOrDefaultAsync(p => p.LegId == id);
 
             return result != null ? _mapper.Map<Tree>(result) : null;

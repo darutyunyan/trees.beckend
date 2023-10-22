@@ -25,7 +25,7 @@ namespace Trees.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Brand[]>> Get()
+        public async Task<ActionResult<BrandResultDto[]>> Get()
         {
             var brands = await _brandService.GetAllAsync();
 
