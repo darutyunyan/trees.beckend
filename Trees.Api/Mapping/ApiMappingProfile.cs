@@ -1,6 +1,8 @@
 using AutoMapper;
 using Trees.Api.Models.Dto.Brand;
 using Trees.Api.Models.Dto.Leg;
+using Trees.Api.Models.Dto.Material;
+using Trees.Api.Models.Dto.Review;
 using Trees.Core.Entities;
 
 namespace Trees.Api.Mapping
@@ -21,6 +23,24 @@ namespace Trees.Api.Mapping
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
             CreateMap<Leg, LegResultDto>();
+
+            CreateMap<MaterialDto, Material>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
+            CreateMap<Material, MaterialResultDto>();
+
+            CreateMap<ReviewDto, Review>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.Author))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => DateTime.Parse(src.Date)))
+                .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Comment));
+
+            CreateMap<Review, ReviewResultDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()))
+                .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.Author))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date))
+                .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Comment));
         }
     }
 }
