@@ -32,7 +32,7 @@ namespace Trees.Core.Services
             if (isUsed)
                 throw new ArgumentException(); // TODO
 
-            await _assemblyMethodRepository.GetAsync(id);
+            await _assemblyMethodRepository.DeleteAsync(id);
         }
 
         private readonly IAssemblyMethodRepository _assemblyMethodRepository;

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Trees.Api.Models.Dto.AssemblyMethod;
 using Trees.Api.Models.Dto.Brand;
 using Trees.Api.Models.Dto.Leg;
 using Trees.Api.Models.Dto.Location;
@@ -12,12 +13,17 @@ namespace Trees.Api.Mapping
     {
         public ApiMappingProfile()
         {
+            CreateMap<AssemblyMethodDto, AssemblyMethod>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
+            CreateMap<AssemblyMethod, AssemblyMethodResultDto>();
+
             CreateMap<BrandDto, Brand>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
             CreateMap<Brand, BrandResultDto>();
-
 
             CreateMap<LegDto, Leg>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
