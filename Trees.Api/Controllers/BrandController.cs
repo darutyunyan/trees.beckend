@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Trees.Api.Models.Dto.Brand;
-using Trees.Core.Entities;
+using Trees.Core.Models;
 using Trees.Core.Interfaces;
 
 namespace Trees.Api.Controllers

@@ -5,7 +5,7 @@ using Trees.Api.Models.Dto.Leg;
 using Trees.Api.Models.Dto.Location;
 using Trees.Api.Models.Dto.Material;
 using Trees.Api.Models.Dto.Review;
-using Trees.Core.Entities;
+using Trees.Core.Models;
 
 namespace Trees.Api.Mapping
 {

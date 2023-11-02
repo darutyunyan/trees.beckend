@@ -1,4 +1,4 @@
-using Trees.Core.Entities;
+using Trees.Core.Models;
 using Trees.Core.Interfaces;
 
 namespace Trees.Core.Services

@@ -1,7 +1,6 @@
 using Trees.Api;
 using Trees.Api.Mapping;
-using Trees.Api.Utils;
-using Trees.Infrastructure.Persistance.Mapping;
+using Trees.Infrastructure.Persistence.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
