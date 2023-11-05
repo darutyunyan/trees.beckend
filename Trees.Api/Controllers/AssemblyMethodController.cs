@@ -8,10 +8,10 @@ namespace Trees.Api.Controllers
 {
     public class AssemblyMethodController : BaseController
     {
-        public AssemblyMethodController(IAssemblyMethodService assemblyMethodService, IMapper mapper)
+        public AssemblyMethodController(IMapper mapper, IAssemblyMethodService assemblyMethodService)
         {
-            _assemblyMethodService = assemblyMethodService;
             _mapper = mapper;
+            _assemblyMethodService = assemblyMethodService;
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace Trees.Api.Controllers
             return Ok();
         }
 
-        private readonly IAssemblyMethodService _assemblyMethodService;
         private readonly IMapper _mapper;
+        private readonly IAssemblyMethodService _assemblyMethodService;
     }
 }

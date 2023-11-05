@@ -8,7 +8,7 @@ namespace Trees.Api.Controllers
 {
     public class LocationController : BaseController
     {
-        public LocationController(ILocationService locationService, IMapper mapper)
+        public LocationController(IMapper mapper, ILocationService locationService)
         {
             _mapper = mapper;
             _locationService = locationService;

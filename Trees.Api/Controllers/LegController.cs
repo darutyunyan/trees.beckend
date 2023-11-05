@@ -8,7 +8,7 @@ namespace Trees.Api.Controllers
 {
     public class LegController : BaseController
     {
-        public LegController(ILegService legService, IMapper mapper)
+        public LegController(IMapper mapper, ILegService legService)
         {
             _mapper = mapper;
             _legService = legService;

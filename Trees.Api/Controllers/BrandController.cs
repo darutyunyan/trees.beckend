@@ -8,7 +8,7 @@ namespace Trees.Api.Controllers
 {
     public class BrandController : BaseController
     {
-        public BrandController(IBrandService brandService, IMapper mapper)
+        public BrandController(IMapper mapper, IBrandService brandService)
         {
             _mapper = mapper;
             _brandService = brandService;

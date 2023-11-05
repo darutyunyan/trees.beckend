@@ -8,7 +8,7 @@ namespace Trees.Api.Controllers
 {
     public class ReviewController : BaseController
     {
-        public ReviewController(IReviewService reviewService, IMapper mapper)
+        public ReviewController(IMapper mapper, IReviewService reviewService)
         {
             _mapper = mapper;
             _reviewService = reviewService;

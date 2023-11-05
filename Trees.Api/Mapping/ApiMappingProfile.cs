@@ -1,6 +1,7 @@
 using AutoMapper;
 using Trees.Api.Models.Dto.AssemblyMethod;
 using Trees.Api.Models.Dto.Brand;
+using Trees.Api.Models.Dto.Img;
 using Trees.Api.Models.Dto.Leg;
 using Trees.Api.Models.Dto.Location;
 using Trees.Api.Models.Dto.Material;
@@ -55,6 +56,12 @@ namespace Trees.Api.Mapping
                 .ForMember(dest => dest.Lng, opt => opt.MapFrom(src => src.Lng));
 
             CreateMap<Location, LocationResultDto>();
+
+            CreateMap<Img, ImgResultDto>();
+
+            CreateMap<ImgDto, Img>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
         }
     }
 }

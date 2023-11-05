@@ -8,7 +8,7 @@ namespace Trees.Api.Controllers
 {
     public class MaterialController : BaseController
     {
-        public MaterialController(IMaterialService materialService, IMapper mapper)
+        public MaterialController(IMapper mapper, IMaterialService materialService)
         {
             _mapper = mapper;
             _materialService = materialService;

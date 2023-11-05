@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Trees.Api.Services.FileManagement;
 using Trees.Api.Services.Mail;
 using Trees.Core.Interfaces;
 using Trees.Core.Services;
@@ -73,7 +74,9 @@ namespace Trees.Api
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<ILogService, LogService>();
             services.AddScoped<ILocationService, LocationService>();
+
             services.AddSingleton<IMailService, MailService>();
+            services.AddSingleton<IFileManagementService, FileManagementService>();
         }
     }
 }
