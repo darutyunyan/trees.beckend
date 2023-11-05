@@ -4,6 +4,7 @@ using Trees.Api.Models.Dto.Brand;
 using Trees.Api.Models.Dto.Img;
 using Trees.Api.Models.Dto.Leg;
 using Trees.Api.Models.Dto.Location;
+using Trees.Api.Models.Dto.Log;
 using Trees.Api.Models.Dto.Material;
 using Trees.Api.Models.Dto.Review;
 using Trees.Core.Models;
@@ -62,6 +63,8 @@ namespace Trees.Api.Mapping
             CreateMap<ImgDto, Img>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
+            CreateMap<Log, LogResultDto>();
         }
     }
 }

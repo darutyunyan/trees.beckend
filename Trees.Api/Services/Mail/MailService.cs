@@ -13,7 +13,7 @@ namespace Trees.Api.Services.Mail
 
         public async Task Send(string subject, string message) // exception
         {
-            MimeMessage emailMessage = new MimeMessage();
+            MimeMessage emailMessage = new();
 
             emailMessage.From.Add(new MailboxAddress(_settings.EmailSettings.SenderName, _settings.EmailSettings.EmailFrom));
             emailMessage.To.Add(new MailboxAddress(string.Empty, _settings.EmailSettings.EmailTo));
