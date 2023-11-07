@@ -19,17 +19,17 @@ namespace Trees.Infrastructure.Persistence.Repository
             if (location == null)
                 throw new ArgumentNullException(nameof(location));
 
-            LocationEntity? locationModel = await _context.Location.FirstOrDefaultAsync();
+            LocationEntity? locationEntity = await _context.Location.FirstOrDefaultAsync();
 
-            if (locationModel == null)
+            if (locationEntity == null)
             {
                 var result = _mapper.Map<LocationEntity>(location);
                 await _context.Location.AddAsync(result);
             }
             else
             {
-                locationModel.Lat = location.Lat;
-                locationModel.Lng = location.Lng;
+                locationEntity.Lat = location.Lat;
+                locationEntity.Lng = location.Lng;
             }
 
             await _context.SaveChangesAsync();
@@ -37,9 +37,9 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<Location?> GetAsync()
         {
-            LocationEntity? locationModel = await _context.Location.FirstOrDefaultAsync();
+            LocationEntity? location = await _context.Location.FirstOrDefaultAsync();
 
-            var result = locationModel != null ? _mapper.Map<Location>(locationModel) : null;
+            var result = location != null ? _mapper.Map<Location>(location) : null;
 
             return result;
         }

@@ -27,9 +27,9 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<List<Review>> GetAllAsync()
         {
-            List<ReviewEntity> reviewModels = await _context.Review.OrderByDescending(r => r.Date).ToListAsync();
+            List<ReviewEntity> reviews = await _context.Review.OrderByDescending(r => r.Date).ToListAsync();
 
-            var result = _mapper.Map<List<Review>>(reviewModels);
+            var result = _mapper.Map<List<Review>>(reviews);
 
             return result;
         }

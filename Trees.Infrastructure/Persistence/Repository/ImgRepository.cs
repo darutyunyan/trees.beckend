@@ -27,18 +27,18 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<Img?> GetAsync(Guid id)
         {
-            ImgEntity? imgModel = await _context.Img.FirstOrDefaultAsync(i => i.Id == id);
+            ImgEntity? img = await _context.Img.FirstOrDefaultAsync(i => i.Id == id);
 
-            var result = imgModel != null ? _mapper.Map<Img>(imgModel) : null;
+            var result = img != null ? _mapper.Map<Img>(img) : null;
 
             return result;
         }
 
         public async Task<List<Img>> GetAllAsync()
         {
-            List<ImgEntity> imgModels = await _context.Img.OrderBy(m => m.Name).ToListAsync();
+            List<ImgEntity> imgs = await _context.Img.OrderBy(m => m.Name).ToListAsync();
 
-            var result = _mapper.Map<List<Img>>(imgModels);
+            var result = _mapper.Map<List<Img>>(imgs);
 
             return result;
         }

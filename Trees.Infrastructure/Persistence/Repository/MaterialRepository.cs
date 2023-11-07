@@ -27,18 +27,18 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<Material?> GetAsync(Guid id)
         {
-            MaterialEntity? materialModel = await _context.Material.FirstOrDefaultAsync(m => m.Id == id);
+            MaterialEntity? materialEntity = await _context.Material.FirstOrDefaultAsync(m => m.Id == id);
 
-            var result = materialModel != null ? _mapper.Map<Material>(materialModel) : null;
+            var result = materialEntity != null ? _mapper.Map<Material>(materialEntity) : null;
 
             return result;
         }
 
         public async Task<List<Material>> GetAllAsync()
         {
-            List<MaterialEntity> materialModels = await _context.Material.OrderBy(m => m.Name).ToListAsync();
+            List<MaterialEntity> materials = await _context.Material.OrderBy(m => m.Name).ToListAsync();
 
-            var result = _mapper.Map<List<Material>>(materialModels);
+            var result = _mapper.Map<List<Material>>(materials);
 
             return result;
         }

@@ -27,18 +27,18 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<Leg?> GetAsync(Guid id)
         {
-            LegEntity? legModel = await _context.Leg.FirstOrDefaultAsync(l => l.Id == id);
+            LegEntity? leg = await _context.Leg.FirstOrDefaultAsync(l => l.Id == id);
 
-            var result = legModel != null ? _mapper.Map<Leg>(legModel) : null;
+            var result = leg != null ? _mapper.Map<Leg>(leg) : null;
 
             return result;
         }
 
         public async Task<List<Leg>> GetAllAsync()
         {
-            List<LegEntity> legModels = await _context.Leg.OrderBy(l => l.Name).ToListAsync();
+            List<LegEntity> legs = await _context.Leg.OrderBy(l => l.Name).ToListAsync();
 
-            var result = _mapper.Map<List<Leg>>(legModels);
+            var result = _mapper.Map<List<Leg>>(legs);
 
             return result;
         }

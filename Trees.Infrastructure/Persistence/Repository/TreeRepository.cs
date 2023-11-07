@@ -35,22 +35,22 @@ namespace Trees.Infrastructure.Persistence.Repository
 
         public async Task<List<Tree>> GetAllAsync()
         {
-            var resultModels = await _context.Tree
+            var results = await _context.Tree
                 .Include(t => t.Img).Include(t => t.Leg).Include(t => t.Material)
                 .Include(t => t.Brand).Include(t => t.AssemblyMethod)
                 .OrderBy(n => n.Name)
                 .ToListAsync();
 
-            return _mapper.Map<List<Tree>>(resultModels);
+            return _mapper.Map<List<Tree>>(results);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            TreeEntity? treeModel = await _context.Tree.FirstOrDefaultAsync(b => b.Id == id);
+            TreeEntity? tree = await _context.Tree.FirstOrDefaultAsync(b => b.Id == id);
 
-            if (treeModel != null)
+            if (tree != null)
             {
-                _context.Tree.Remove(treeModel);
+                _context.Tree.Remove(tree);
                 await _context.SaveChangesAsync();
             }
         }
