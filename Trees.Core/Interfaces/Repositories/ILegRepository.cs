@@ -8,6 +8,7 @@ namespace Trees.Core.Interfaces
         Task<Leg?> GetAsync(Guid id);
         Task<List<Leg>> GetAllAsync();
         Task<bool> IsExistAsync(string name);
+        Task<bool> IsUsedAsync(Guid id);
         Task DeleteAsync(Guid id);
     }
 }

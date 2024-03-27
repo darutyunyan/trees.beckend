@@ -43,12 +43,9 @@ namespace Trees.Infrastructure.Persistence.Repository
             return result;
         }
 
-        public async Task<bool> IsExistAsync(string name)
-        {
-            LegEntity? leg = await _context.Leg.FirstOrDefaultAsync(l => l.Name == name);
+        public async Task<bool> IsExistAsync(string name) => await _context.Leg.AnyAsync(l => l.Name == name);
 
-            return leg != null;
-        }
+        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.LegId == id);
 
         public async Task DeleteAsync(Guid id)
         {

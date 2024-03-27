@@ -1,14 +1,14 @@
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
+using System.Xml.Linq;
 
 namespace Trees.Core.Services
 {
     public class BrandService : IBrandService
     {
-        public BrandService(IBrandRepository brandRepository, ITreeRepository treeRepository)
+        public BrandService(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
-            _treeRepository = treeRepository;
         }
 
         public async Task CreateAsync(Brand brand)
@@ -27,7 +27,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = await _treeRepository.GetByBrandIdAsync(id) != null;
+            bool isUsed = await _brandRepository.IsUsedAsync(id);
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
@@ -36,6 +36,5 @@ namespace Trees.Core.Services
         }
 
         private readonly IBrandRepository _brandRepository;
-        private readonly ITreeRepository _treeRepository;
     }
 }

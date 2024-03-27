@@ -43,12 +43,9 @@ namespace Trees.Infrastructure.Persistence.Repository
             return result;
         }
 
-        public async Task<bool> IsExistAsync(string name)
-        {
-            BrandEntity? brand = await _context.Brand.FirstOrDefaultAsync(b => b.Name == name);
+        public async Task<bool> IsExistAsync(string name) => await _context.Brand.AnyAsync(b => b.Name == name);
 
-            return brand != null;
-        }
+        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.BrandId == id);
 
         public async Task DeleteAsync(Guid id)
         {

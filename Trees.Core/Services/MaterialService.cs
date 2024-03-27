@@ -1,14 +1,13 @@
-using Trees.Core.Models;
 using Trees.Core.Interfaces;
+using Trees.Core.Models;
 
 namespace Trees.Core.Services
 {
     public class MaterialService : IMaterialService
     {
-        public MaterialService(IMaterialRepository materialRepository, ITreeRepository treeRepository)
+        public MaterialService(IMaterialRepository materialRepository)
         {
             _materialRepository = materialRepository;
-            _treeRepository = treeRepository;
         }
 
         public async Task CreateAsync(Material material)
@@ -27,7 +26,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = await _treeRepository.GetByMaterialIdAsync(id) != null;
+            bool isUsed = await _materialRepository.IsUsedAsync(id);
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
@@ -36,6 +35,5 @@ namespace Trees.Core.Services
         }
 
         private readonly IMaterialRepository _materialRepository;
-        private readonly ITreeRepository _treeRepository;
     }
 }

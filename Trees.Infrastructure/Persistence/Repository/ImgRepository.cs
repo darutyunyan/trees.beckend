@@ -43,12 +43,9 @@ namespace Trees.Infrastructure.Persistence.Repository
             return result;
         }
 
-        public async Task<bool> IsExistAsync(string name)
-        {
-            ImgEntity? img = await _context.Img.FirstOrDefaultAsync(i => i.Name == name);
+        public async Task<bool> IsExistAsync(string name) => await _context.Img.AnyAsync(i => i.Name == name);
 
-            return img != null;
-        }
+        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.ImgId == id);
 
         public async Task DeleteAsync(Guid id)
         {

@@ -1,14 +1,14 @@
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
+using System.Xml.Linq;
 
 namespace Trees.Core.Services
 {
     public class LegService : ILegService
     {
-        public LegService(ILegRepository legRepository, ITreeRepository treeRepository)
+        public LegService(ILegRepository legRepository)
         {
             _legRepository = legRepository;
-            _treeRepository = treeRepository;
         }
 
         public async Task CreateAsync(Leg leg)
@@ -27,7 +27,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = await _treeRepository.GetByLegIdAsync(id) != null;
+            bool isUsed = await _legRepository.IsUsedAsync(id);
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
@@ -36,6 +36,5 @@ namespace Trees.Core.Services
         }
 
         private readonly ILegRepository _legRepository;
-        private readonly ITreeRepository _treeRepository;
     }
 }

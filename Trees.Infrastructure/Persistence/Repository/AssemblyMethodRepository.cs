@@ -44,11 +44,10 @@ namespace Trees.Infrastructure.Persistence.Repository
         }
 
         public async Task<bool> IsExistAsync(string name)
-        {
-            AssemblyMethodEntity? assembly = await _context.AssemblyMethod.FirstOrDefaultAsync(m => m.Name == name);
+            => await _context.AssemblyMethod.AnyAsync(am => am.Name == name); 
 
-            return assembly != null;
-        }
+        public async Task<bool> IsUsedAsync(Guid id)
+            => await _context.Tree.AnyAsync(t => t.AssemblyMethodId == id); 
 
         public async Task DeleteAsync(Guid id)
         {

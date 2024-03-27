@@ -27,12 +27,15 @@ namespace Trees.Api
                 throw new ArgumentNullException(nameof(settings));
 
             services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+            {
                 options.UseSqlServer(string.Format(
-                    AppSettings.DbConnectionFormat,
-                    settings.DBAppSettings.DataSource,
-                    settings.DBAppSettings.DataBase,
-                    settings.DBAppSettings.UserID,
-                    settings.DBAppSettings.Password)));
+                   AppSettings.DbConnectionFormat,
+                   settings.DBAppSettings.DataSource,
+                   settings.DBAppSettings.DataBase,
+                   settings.DBAppSettings.UserID,
+                   settings.DBAppSettings.Password));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
         }
 
         public static void ConfigureLogDb(this IServiceCollection services, AppSettings? settings)

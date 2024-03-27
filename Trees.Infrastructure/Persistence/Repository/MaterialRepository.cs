@@ -43,12 +43,9 @@ namespace Trees.Infrastructure.Persistence.Repository
             return result;
         }
 
-        public async Task<bool> IsExistAsync(string name)
-        {
-            MaterialEntity? material = await _context.Material.FirstOrDefaultAsync(m => m.Name == name);
+        public async Task<bool> IsExistAsync(string name) => await _context.Material.AnyAsync(m => m.Name == name);
 
-            return material != null;
-        }
+        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.MaterialId == id);
 
         public async Task DeleteAsync(Guid id)
         {

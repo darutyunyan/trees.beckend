@@ -51,9 +51,9 @@ namespace Trees.Api.Controllers
             if (currentImg == null)
                 throw new ArgumentException(nameof(currentImg)); // TODO
 
-            _fileManagementService.Delete(currentImg.Name, FileType.Img);
-
             await _imgService.DeleteAsync(idImg);
+
+            _fileManagementService.Delete(currentImg.Name, FileType.Img);
 
             return Ok();
         }

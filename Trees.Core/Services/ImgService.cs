@@ -5,10 +5,9 @@ namespace Trees.Core.Services
 {
     public class ImgService : IImgService
     {
-        public ImgService(IImgRepository imgRepository, ITreeRepository treeRepository)
+        public ImgService(IImgRepository imgRepository)
         {
             _imgRepository = imgRepository;
-            _treeRepository = treeRepository;
         }
 
         public async Task CreateAsync(Img img)
@@ -27,7 +26,7 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            bool isUsed = await _treeRepository.GetByImgIdAsync(id) != null;
+            bool isUsed = await _imgRepository.IsUsedAsync(id);
 
             if (isUsed)
                 throw new ArgumentException(); // TODO
@@ -36,6 +35,5 @@ namespace Trees.Core.Services
         }
 
         private readonly IImgRepository _imgRepository;
-        private readonly ITreeRepository _treeRepository;
     }
 }
