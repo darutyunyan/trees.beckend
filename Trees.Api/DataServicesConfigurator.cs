@@ -3,8 +3,8 @@ using Trees.Api.Services.FileManagement;
 using Trees.Api.Services.Mail;
 using Trees.Core.Interfaces;
 using Trees.Core.Services;
-using Trees.Infrastructure.Persistence;
-using Trees.Infrastructure.Persistence.Repository;
+using Trees.DataAccess;
+using Trees.DataAccess.Repository;
 
 namespace Trees.Api
 {

@@ -1,8 +1,8 @@
 using AutoMapper;
 using Trees.Core.Models;
-using Trees.Infrastructure.Persistence.Entities;
+using Trees.DataAccess.Entities;
 
-namespace Trees.Infrastructure.Persistence.Mapping
+namespace Trees.DataAccess.Mapping
 {
     public class DbMappingProfile : Profile
     {

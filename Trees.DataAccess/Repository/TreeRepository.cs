@@ -2,9 +2,9 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
-using Trees.Infrastructure.Persistence.Entities;
+using Trees.DataAccess.Entities;
 
-namespace Trees.Infrastructure.Persistence.Repository
+namespace Trees.DataAccess.Repository
 {
     public class TreeRepository : ITreeRepository
     {
@@ -18,7 +18,7 @@ namespace Trees.Infrastructure.Persistence.Repository
         {
             if (tree == null)
                 throw new ArgumentNullException(nameof(tree));
-           
+
             var result = _mapper.Map<TreeEntity>(tree);
 
             await _context.Tree.AddAsync(result);

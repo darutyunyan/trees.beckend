@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Trees.Infrastructure.Persistence.Entities;
+using Trees.DataAccess.Entities;
 
-namespace Trees.Infrastructure.Persistence
+namespace Trees.DataAccess
 {
     public interface IApplicationDbContext
     {

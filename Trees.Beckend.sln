@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.Core", "Trees.Core\Trees.Core.csproj", "{9EC6E123-E7F3-49A2-9972-06CBC252204F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.Infrastructure", "Trees.Infrastructure\Trees.Infrastructure.csproj", "{E34AD583-08EA-4A11-8103-DF15C385072C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.DataAccess", "Trees.DataAccess\Trees.DataAccess.csproj", "{E34AD583-08EA-4A11-8103-DF15C385072C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trees.Api", "Trees.Api\Trees.Api.csproj", "{31782366-2673-4590-B885-1817FC1D3903}"
 EndProject

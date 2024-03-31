@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
 
-namespace Trees.Infrastructure.Persistence.Repository
+namespace Trees.DataAccess.Repository
 {
     public class LogRepository : ILogRepository
     {

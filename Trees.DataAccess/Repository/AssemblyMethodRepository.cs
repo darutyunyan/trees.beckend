@@ -2,9 +2,9 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
-using Trees.Infrastructure.Persistence.Entities;
+using Trees.DataAccess.Entities;
 
-namespace Trees.Infrastructure.Persistence.Repository
+namespace Trees.DataAccess.Repository
 {
     public class AssemblyMethodRepository : IAssemblyMethodRepository
     {
@@ -44,10 +44,10 @@ namespace Trees.Infrastructure.Persistence.Repository
         }
 
         public async Task<bool> IsExistAsync(string name)
-            => await _context.AssemblyMethod.AnyAsync(am => am.Name == name); 
+            => await _context.AssemblyMethod.AnyAsync(am => am.Name == name);
 
         public async Task<bool> IsUsedAsync(Guid id)
-            => await _context.Tree.AnyAsync(t => t.AssemblyMethodId == id); 
+            => await _context.Tree.AnyAsync(t => t.AssemblyMethodId == id);
 
         public async Task DeleteAsync(Guid id)
         {

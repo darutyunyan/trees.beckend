@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Trees.Core.Models;
 
-namespace Trees.Infrastructure.Persistence
+namespace Trees.DataAccess
 {
     public interface ILogDbContext
     {

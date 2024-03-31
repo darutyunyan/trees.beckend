@@ -1,4 +1,4 @@
-namespace Trees.Infrastructure.Persistence.Entities
+namespace Trees.DataAccess.Entities
 {
     public class LogEntity
     {
