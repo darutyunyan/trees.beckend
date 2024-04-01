@@ -33,8 +33,7 @@ namespace Trees.Api
                    settings.DBAppSettings.DataSource,
                    settings.DBAppSettings.DataBase,
                    settings.DBAppSettings.UserID,
-                   settings.DBAppSettings.Password));
-                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                   settings.DBAppSettings.Password), b=> b.MigrationsAssembly("Trees.DataAccess"));
             });
         }
 

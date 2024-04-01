@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Trees.DataAccess.Configurations;
+
 namespace Trees.DataAccess.Entities
 {
+    [EntityTypeConfiguration(typeof(LocationEntityConfiguration))]
     public class LocationEntity
     {
         public Guid Id { get; set; }

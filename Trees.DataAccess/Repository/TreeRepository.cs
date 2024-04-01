@@ -36,14 +36,13 @@ namespace Trees.DataAccess.Repository
         public async Task<List<Tree>> GetAllAsync()
         {
             List<TreeEntity> results = await _context.Tree
-                .Include(t => t.Img)
+                //.Include(t => t.Img)
                 .Include(t => t.Leg)
                 .Include(t => t.Material)
                 .Include(t => t.Brand)
                 .Include(t => t.AssemblyMethod)
                 .OrderBy(n => n.Name)
-                .ToListAsync()
-                ;
+                .ToListAsync();
 
             return _mapper.Map<List<Tree>>(results);
         }

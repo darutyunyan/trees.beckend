@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Trees.Core.Models;
 using Trees.Core.Interfaces;
 using Trees.DataAccess.Entities;
+using System.Linq;
 
 namespace Trees.DataAccess.Repository
 {
@@ -34,6 +35,15 @@ namespace Trees.DataAccess.Repository
             return result;
         }
 
+        public async Task<List<Img>> GetAsync(List<Guid> ids)
+        {
+            List<ImgEntity> imgs = await _context.Img.Where(i => ids.Contains(i.Id)).ToListAsync();
+
+            var results = _mapper.Map<List<Img>>(imgs);
+
+            return results;
+        }
+
         public async Task<List<Img>> GetAllAsync()
         {
             List<ImgEntity> imgs = await _context.Img.OrderBy(m => m.Name).ToListAsync();
@@ -45,7 +55,7 @@ namespace Trees.DataAccess.Repository
 
         public async Task<bool> IsExistAsync(string name) => await _context.Img.AnyAsync(i => i.Name == name);
 
-        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.ImgId == id);
+        public async Task<bool> IsUsedAsync(Guid id) => await _context.Tree.AnyAsync(t => t.Imgs.Any(i=>i.Id == id));
 
         public async Task DeleteAsync(Guid id)
         {

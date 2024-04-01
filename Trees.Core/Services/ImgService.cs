@@ -21,7 +21,7 @@ namespace Trees.Core.Services
         }
 
         public async Task<Img?> GetAsync(Guid id) => await _imgRepository.GetAsync(id);
-
+        public async Task<List<Img>> GetAsync(List<Guid> ids) => await _imgRepository.GetAsync(ids);
         public async Task<List<Img>> GetAllAsync() => await _imgRepository.GetAllAsync();
 
         public async Task DeleteAsync(Guid id)

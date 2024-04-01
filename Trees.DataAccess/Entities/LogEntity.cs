@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Trees.DataAccess.Configurations;
+
 namespace Trees.DataAccess.Entities
 {
+    [EntityTypeConfiguration(typeof(LogEntityConfiguration))]
     public class LogEntity
     {
         public Guid Id { get; set; }

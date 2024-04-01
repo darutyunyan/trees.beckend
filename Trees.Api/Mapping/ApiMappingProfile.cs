@@ -67,14 +67,14 @@ namespace Trees.Api.Mapping
 
             CreateMap<Log, LogResultDto>();
 
-            CreateMap<TreeDto, Tree>()
+            CreateMap<TreeDto, TreeDetails>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Info, opt => opt.MapFrom(src => src.Info))
                 .ForMember(dest => dest.IsDisplay, opt => opt.MapFrom(src => src.IsDisplay))
-                .ForMember(dest => dest.ImgId, opt => opt.MapFrom(src => Guid.Parse(src.ImgId)))
+               //.ForMember(dest => dest.ImgId, opt => opt.MapFrom(src => Guid.Parse(src.ImgId)))
                 .ForMember(dest => dest.LegId, opt => opt.MapFrom(src =>
                     src.LegId != null ? Guid.Parse(src.LegId) : (Guid?)null))
                 .ForMember(dest => dest.AssemblyMethodId, opt => opt.MapFrom(src =>

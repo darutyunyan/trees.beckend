@@ -25,18 +25,16 @@ namespace Trees.Core.Services
             _brandService = brandService;
         }
 
-        public async Task CreateAsync(Tree tree)
+        public async Task CreateAsync(TreeDetails treeDetails)
         {
-            await _ValidateTree(tree);
-            await _InitComponent(tree);
+            Tree tree = await _ValidateTree(treeDetails);
 
             await _treeRepository.CreateAsync(tree);
         }
 
-        public async Task UpdateAsync(Tree tree)
+        public async Task UpdateAsync(TreeDetails treeDetails)
         {
-            await _ValidateTree(tree);
-            await _InitComponent(tree);
+            Tree tree = await _ValidateTree(treeDetails);
 
             await _treeRepository.UpdateAsync(tree);
         }
@@ -45,34 +43,42 @@ namespace Trees.Core.Services
 
         public async Task DeleteAsync(Guid id) => await _treeRepository.DeleteAsync(id);
 
-        private async Task _ValidateTree(Tree tree)
+        private async Task<Tree> _ValidateTree(TreeDetails treeDetails)
         {
-            _ValidateInfo(tree);
+            _ValidateInfo(treeDetails);
 
-            Img? img = await _imgService.GetAsync(tree.ImgId); ;
+            List<Img> imgs = await _imgService.GetAsync(treeDetails.Imgs);
 
-            if (img == null)
-                throw new ArgumentException(nameof(Img)); // todo 
+            if (imgs.Count == 0)
+                throw new ArgumentException(nameof(imgs)); // todo 
 
-            if (tree.LegId.HasValue && (await _legService.GetAsync(tree.LegId.Value) == null))
-                throw new ArgumentException(nameof(Leg)); // todo 
+            Tree tree = new() {
+                Name = treeDetails.Name,
+                InfoXml = _ConvertInfoToXml(treeDetails.Info),
+                Imgs = imgs,
+            };
+   
+            if (treeDetails.LegId.HasValue && (await _legService.GetAsync(treeDetails.LegId.Value) == null))
+                tree.Leg = (await _legService.GetAsync(treeDetails.LegId.Value)) ?? throw new ArgumentException(nameof(treeDetails.LegId)); // todo
 
-            if (tree.AssemblyMethodId.HasValue && (await _assemblyMethodService.GetAsync(tree.AssemblyMethodId.Value) == null))
-                throw new ArgumentException(nameof(AssemblyMethod)); // todo 
+            if (treeDetails.AssemblyMethodId.HasValue)
+                tree.AssemblyMethod = (await _assemblyMethodService.GetAsync(treeDetails.AssemblyMethodId.Value)) ?? throw new ArgumentException(nameof(treeDetails.AssemblyMethodId)); // todo 
 
-            if (tree.MaterialId.HasValue && (await _materialService.GetAsync(tree.MaterialId.Value) == null))
-                throw new ArgumentException(nameof(Material)); // todo 
+            if (treeDetails.MaterialId.HasValue)
+                tree.Material = (await _materialService.GetAsync(treeDetails.MaterialId.Value)) ?? throw new ArgumentException(nameof(treeDetails.MaterialId)); // todo 
 
-            if (tree.BrandId.HasValue && (await _brandService.GetAsync(tree.BrandId.Value) == null))
-                throw new ArgumentException(nameof(Brand)); // todo 
+            if (treeDetails.BrandId.HasValue)
+                tree.Brand = (await _brandService.GetAsync(treeDetails.BrandId.Value)) ?? throw new ArgumentException(nameof(Brand)); // todo
+
+            return tree;
         }
 
-        private void _ValidateInfo(Tree tree)
+        private void _ValidateInfo(TreeDetails treeDetails)
         {
-            if (tree.Info == null || tree.Info.Length == 0)
-                throw new ArgumentException(nameof(tree.Info)); // todo
+            if (treeDetails.Info == null || treeDetails.Info.Length == 0)
+                throw new ArgumentException(nameof(treeDetails.Info)); // todo
 
-            foreach (var value in tree.Info)
+            foreach (var value in treeDetails.Info)
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException(nameof(value)); // todo
@@ -82,16 +88,6 @@ namespace Trees.Core.Services
                 if (items.Length != InfoItemValueCount)
                     throw new ArgumentException(nameof(value)); // todo
             }
-        }
-
-        private async Task _InitComponent(Tree tree)
-        {
-            tree.InfoXml = _ConvertInfoToXml(tree.Info);
-            //tree.Img = await _imgRepository.GetAsync(tree.ImgId) ?? throw new ArgumentException(nameof(Img));
-            //tree.Leg = tree.LegId.HasValue ? await _legRepository.GetAsync(tree.LegId.Value) : null;
-            // tree.AssemblyMethod = tree.AssemblyMethodId.HasValue ? await _assemblyMethodRepository.GetAsync(tree.AssemblyMethodId.Value) : null;
-            //tree.Material = tree.MaterialId.HasValue ? await _materialRepository.GetAsync(tree.MaterialId.Value) : null;
-            //tree.Brand = tree.BrandId.HasValue ? await _brandRepository.GetAsync(tree.BrandId.Value) : null;
         }
 
         private string _ConvertInfoToXml(string[] info)

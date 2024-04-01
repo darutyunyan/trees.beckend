@@ -17,7 +17,7 @@ namespace Trees.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(TreeDto dto)
         {
-            var result = _mapper.Map<Tree>(dto);
+            var result = _mapper.Map<TreeDetails>(dto);
 
             await _treeService.CreateAsync(result);
 
@@ -27,7 +27,7 @@ namespace Trees.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update([FromRoute]Guid id, TreeDto dto)
         {
-            var result = _mapper.Map<Tree>(dto, opt =>
+            var result = _mapper.Map<TreeDetails>(dto, opt =>
             {
                 opt.AfterMap((src, dest) => dest.Id = id);
             });

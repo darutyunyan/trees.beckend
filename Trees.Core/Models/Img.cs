@@ -5,5 +5,6 @@ namespace Trees.Core.Models
         public Guid Id { get; set; }
         public required string Name { get; set; }
         public required string Path { get; set; }
+        public required ImgType Type { get; set; }
     }
 }
